@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Console Logging GIPHY</title>
+</head>
+<body>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<script type="text/javascript">
+	//create a variable which contains the strings
+	var queryURL="http://api.giphy.com/v1/gifs/search?q=conjuring&api_key=dc6zaTOxFJmzC"
+	//make actual ajax request; sending a call to the URL
+	$.ajax({ url:queryURL,method : 'GET'})
+	//once the data is collected back from the server its going to run this response
+	.done(function(response) {
+	//console logging response
+		console.log(response)
+	});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Button Triggered AJAX</title>
+	<script
+  src="http://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+
+<button data-search="Arnold Schwazenneger">Arnold</button>
+<button data-search="Samuel L Jackson">Samuel L Jackson</button>
+<button data-search="Star Wars">Star Wars</button>
+
+
+<div id ="GIFArea"></div>
+<script type="text/javascript">
+	$('button').on('click',function(){
+		var x = $(this).data ("search");
+		console.log(x);
+		var queryURL="http://api.giphy.com/v1/gifs/search?q=" + x + "&api_key=dc6zaTOxFJmzC&limit=10";
+		console.log(queryURL);
+		$.ajax({url:queryURL,method:'GET'})
+		.done(function(response) {
+		console.log(response.data[0].rating + '</p>');
+		for (var i = 0; i <= response.data.length; i++) {
+		// $('body').append("<p> Rating:" + response.data[i].rating + '</p>');
+		// $('body').append("<img src='"+response.data[i].images.downsized.url+"'>");
+		$('#GIFArea').prepend("<p> Rating:" + response.data[i].rating + '</p>');
+		$('#GIFArea').prepend("<img src='"+response.data[i].images.downsized.url+"'>");
+		}
+		 });
+	})
+
+</script>
+</body>
+</html>
